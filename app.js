@@ -51,8 +51,10 @@ app.post('/upload', (req,res) => {
                 msg: err
             });
         } else {
-            console.log(req.file);
-            res.send('test');
+            res.render('index', {
+                msg: 'file uploaded!',
+                file:  `uploads/${req.file.filename}`
+            });
         }
     })
 })
