@@ -9,7 +9,8 @@ const storage = multer.diskStorage({
     filename: function(req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + 
         path.extname(file.originalname));
-    }
+    },
+    
 })
 
 const upload = multer({
@@ -43,6 +44,10 @@ function checkFileType(file, cb) {
 app.use(express.static('./public'));
 
 app.get('/', (req, res) => res.render('index'))
+// fs.readdir(path, function(err, items) {
+//     console.log(items);
+//     res.send(`<h1>Welcome to Kenziegram!</h1>`);
+// });
 
 app.post('/upload', (req,res) => {
     upload(req, res, err => {
