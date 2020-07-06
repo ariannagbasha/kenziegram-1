@@ -43,7 +43,13 @@ function checkFileType(file, cb) {
 
 app.use(express.static('./public'));
 
-app.get('/', (req, res) => res.render('index'))
+app.get('/', (req, res) => { 
+    
+    
+    
+    res.render('index')
+
+})
 // fs.readdir(path, function(err, items) {
 //     console.log(items);
 //     res.send(`<h1>Welcome to Kenziegram!</h1>`);
@@ -52,11 +58,11 @@ app.get('/', (req, res) => res.render('index'))
 app.post('/upload', (req,res) => {
     upload(req, res, err => {
         if(err) {
-            res.render('index', {
+            res.render('pictures', {
                 msg: err
             });
         } else {
-            res.render('index', {
+            res.render('pictures', {
                 msg: 'file uploaded!',
                 file:  `uploads/${req.file.filename}`
             });
